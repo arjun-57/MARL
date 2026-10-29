@@ -1,0 +1,36 @@
+# System Configuration for IEEE 33-Bus Energy Management
+grid:
+  network_name: "case33bw"
+  base_mva: 10.0
+  voltage_limits:
+    v_min: 0.90  # p.u. (nominal 0.95 with emergency margin 0.90)
+    v_max: 1.10  # p.u. (nominal 1.05 with emergency margin 1.10)
+    v_nominal_min: 0.95
+    v_nominal_max: 1.05
+  line_loading_max: 100.0  # percentage max capacity
+  slack_bus: 0
+
+assets:
+  solar:
+    installed_bus: 18  # Far end of feeder branch
+    capacity_mw: 1.5   # 1.5 MW peak PV capacity
+    curtailment_allowed: true
+
+  battery:
+    installed_bus: 14  # Strategic midpoint node
+    capacity_mwh: 2.0  # 2.0 MWh storage
+    max_charge_mw: 0.8
+    max_discharge_mw: 0.8
+
+  ev_hub:
+    installed_bus: 24  # Commercial / community hub branch
+    num_chargers: 10
+    charger_rating_kw: 50.0  # 50 kW fast chargers (Total peak 0.5 MW)
+    battery_capacity_per_ev_kwh: 60.0
+
+simulation:
+  timestep_hours: 1.0
+  default_episode_length: 168  # 1 week = 168 hours
+  start_date: "2019-01-01 00:00:00"
+  reference_germany_load_mw: 75000.0  # calibrated reference German load for feeder nominal bounds
+  reference_germany_solar_mw: 35000.0 # reference peak German solar capacity for scaling

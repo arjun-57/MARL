@@ -1,0 +1,37 @@
+# Attack Engine Configurations
+attacks:
+  communication_delay:
+    name: "communication_delay"
+    default_delay_steps: 2  # 2 hours / steps delay
+    target_agents: ["solar_agent", "demand_agent"]
+
+  packet_loss:
+    name: "packet_loss"
+    drop_probability: 0.30  # 30% messages lost
+    target_agents: ["solar_agent", "market_agent"]
+
+  stale_data:
+    name: "stale_data"
+    replay_window_steps: 6
+    target_agents: ["market_agent"]
+
+  false_data_injection:
+    name: "false_data_injection"
+    solar_bias_mw: 2.0        # Reports 2.0 MW extra or inflated
+    demand_bias_factor: 0.5   # Reports half load to mask overload
+    target_agents: ["solar_agent", "demand_agent"]
+
+  demand_spike:
+    name: "demand_spike"
+    spike_multiplier: 1.8     # Sudden 80% physical demand surge
+    duration_steps: 4
+
+  solar_drop:
+    name: "solar_drop"
+    drop_factor: 0.1          # Sudden 90% cloud cover drop
+    duration_steps: 3
+
+  agent_failure:
+    name: "agent_failure"
+    failure_mode: "silent_drop" # Stops responding or reports zero
+    target_agent: "battery_agent"

@@ -1,0 +1,46 @@
+# Experiment Scenarios & Comparative Benchmarks
+experiments:
+  benchmarks:
+    - id: "centralized_rule"
+      name: "Centralized Rule-Based Controller"
+      description: "Classical centralized logic without agent decomposition or cyber protection"
+    - id: "independent_mas"
+      name: "Independent Multi-Agent System"
+      description: "Agents act greedily on local or unverified incoming signals"
+    - id: "coordinated_mas"
+      name: "Coordinated Multi-Agent System"
+      description: "Coordinator aggregates proposals with standard conflict resolution"
+    - id: "resilient_mas"
+      name: "Resilient Multi-Agent System (Proposed)"
+      description: "Full cyber-physical trust verification, anomaly isolation, and safety filtering"
+
+  scenarios:
+    - id: "normal_operation"
+      name: "Normal Pristine Operation"
+      attack: null
+      duration_hours: 168
+
+    - id: "communication_delay"
+      name: "Communication Latency Scenario"
+      attack: "communication_delay"
+      duration_hours: 168
+
+    - id: "packet_loss"
+      name: "Severe Packet Loss Scenario"
+      attack: "packet_loss"
+      duration_hours: 168
+
+    - id: "false_data_injection"
+      name: "False Data Injection Attack"
+      attack: "false_data_injection"
+      duration_hours: 168
+
+    - id: "agent_failure"
+      name: "BESS Agent Crash/Failure"
+      attack: "agent_failure"
+      duration_hours: 168
+
+    - id: "combined_cyber_physical"
+      name: "Combined Multi-Vector Attack"
+      attack: "combined_attack"
+      duration_hours: 168

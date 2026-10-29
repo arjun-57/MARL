@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resilient Multi-Agent Energy Management System (Resilient-MAS)</title>
+  <meta name="description" content="Cyber-Physical Energy Management, Real-time Trust Sentinel, and Operations Copilot for IEEE 33-Bus with Ember and OPSD Data">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+      </div>
+      <div class="brand-title">
+        <h1>Resilient-MAS IEEE 33-Bus</h1>
+        <p>Real Data (Ember Wholesale + OPSD) • Cyber-Physical Defense</p>
+      </div>
+    </div>
+
+    <div class="nav-badges">
+      <div class="badge badge-resilient badge-pulse">
+        <span>Trust Sentinel Active</span>
+      </div>
+      <div class="badge" style="background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); border-color: rgba(59, 130, 246, 0.3);">
+        <span>Pandapower AC-PF</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="container">
+
+    <!-- Interactive Simulation & Attack Trigger Bar -->
+    <div class="controls-bar">
+      <div class="control-group">
+        <label for="select-controller">Control Paradigm</label>
+        <select id="select-controller" class="control-select">
+          <option value="resilient" selected>Resilient MAS (Proposed + Trust + Safety)</option>
+          <option value="coordinated">Coordinated MAS (No Cyber Security)</option>
+          <option value="independent">Independent MAS (Uncoordinated Greedy)</option>
+          <option value="centralized">Centralized Rule Baseline</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="select-attack">Attack Vector</label>
+        <select id="select-attack" class="control-select">
+          <option value="false_data" selected>False Data Injection (FDI - Solar Inflation)</option>
+          <option value="communication_delay">Communication Delay (Latency Latency)</option>
+          <option value="packet_loss">Severe Packet Loss (35% Drop Rate)</option>
+          <option value="agent_failure">BESS Agent Crash / Drop-out</option>
+          <option value="combined">Combined Multi-Vector Attack</option>
+          <option value="none">Normal Pristine Operation</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="input-steps">Horizon (Hours)</label>
+        <input type="number" id="input-steps" class="control-input" value="72" min="24" max="168" style="width: 100px;">
+      </div>
+
+      <button id="btn-run-sim" class="btn-run">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        Execute Scenario
+      </button>
+    </div>
+
+    <!-- Live KPI Metric Cards -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Operating Cost</div>
+        <div class="kpi-value" id="kpi-cost">€11,475.42</div>
+        <div class="kpi-sub">Electricity + BESS Degradation</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Minimum Bus Voltage</div>
+        <div class="kpi-value" id="kpi-vmin" style="color: var(--accent-emerald);">0.8986 p.u.</div>
+        <div class="kpi-sub">Safe ANSI Band: 0.95 - 1.05 p.u.</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Battery SOC (Bus 14)</div>
+        <div class="kpi-value" id="kpi-soc">95.0%</div>
+        <div class="kpi-sub">2.0 MWh LFP • 0.8 MW Inverter</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Solar PV Power (Bus 18)</div>
+        <div class="kpi-value" id="kpi-solar">1.50 MW</div>
+        <div class="kpi-sub">1.5 MW Rated • Curtailment Active</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">EV Charging Hub (Bus 24)</div>
+        <div class="kpi-value" id="kpi-ev">0.24 MW</div>
+        <div class="kpi-sub">10 Chargers • 0.5 MW Peak</div>
+      </div>
+    </section>
+
+    <!-- Feeder Map & Multi-Agent Sentinel Panel -->
+    <div class="two-col-grid">
+      <!-- Grid Feeder Visualization -->
+      <div class="panel">
+        <div class="section-header">
+          <div class="section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            IEEE 33-Bus Radial Feeder Topology & Asset Locations
+          </div>
+          <span style="font-size: 0.8rem; color: var(--text-dim);">ANSI C84.1 Compliant</span>
+        </div>
+        
+        <div class="feeder-container" id="feeder-diagram">
+          <svg width="100%" height="100%" viewBox="0 0 900 220" id="svg-feeder">
+            <!-- Main Trunk Bus 0 to 17 -->
+            <line x1="60" y1="110" x2="840" y2="110" stroke="rgba(255,255,255,0.2)" stroke-width="3" />
+            <!-- Substation Bus 0 -->
+            <circle cx="60" cy="110" r="14" fill="var(--accent-cyan)" />
+            <text x="60" y="85" fill="#fff" font-size="11" text-anchor="middle" font-weight="600">Substation (0)</text>
+
+            <!-- BESS Bus 14 -->
+            <circle cx="480" cy="110" r="13" fill="var(--accent-violet)" />
+            <text x="480" y="85" fill="var(--accent-violet)" font-size="11" text-anchor="middle" font-weight="600">BESS (14)</text>
+
+            <!-- Solar PV Bus 18 -->
+            <circle cx="780" cy="110" r="13" fill="var(--accent-amber)" id="bus-18-node" />
+            <text x="780" y="85" fill="var(--accent-amber)" font-size="11" text-anchor="middle" font-weight="600">Solar PV (18)</text>
+
+            <!-- Lateral Branch to EV Hub Bus 24 -->
+            <line x1="280" y1="110" x2="280" y2="180" stroke="rgba(255,255,255,0.2)" stroke-width="3" />
+            <circle cx="280" cy="180" r="13" fill="var(--accent-emerald)" />
+            <text x="280" y="205" fill="var(--accent-emerald)" font-size="11" text-anchor="middle" font-weight="600">EV Station (24)</text>
+
+            <!-- Subordinate Feeder nodes -->
+            <circle cx="120" cy="110" r="6" fill="#64748b" />
+            <circle cx="180" cy="110" r="6" fill="#64748b" />
+            <circle cx="240" cy="110" r="6" fill="#64748b" />
+            <circle cx="340" cy="110" r="6" fill="#64748b" />
+            <circle cx="400" cy="110" r="6" fill="#64748b" />
+            <circle cx="560" cy="110" r="6" fill="#64748b" />
+            <circle cx="640" cy="110" r="6" fill="#64748b" />
+            <circle cx="720" cy="110" r="6" fill="#64748b" />
+            <circle cx="840" cy="110" r="6" fill="#64748b" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Agent Trust & Security Sentinel -->
+      <div class="panel">
+        <div class="section-header">
+          <div class="section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-emerald)" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            Agent Trust Sentinel
+          </div>
+          <span style="font-size: 0.8rem; color: var(--text-dim);">Checks 1–4</span>
+        </div>
+
+        <div class="agent-trust-list" id="agent-trust-container">
+          <!-- Dynamically populated rows -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Charts Section -->
+    <div class="two-col-grid">
+      <!-- Power Profiles Chart -->
+      <div class="panel">
+        <div class="section-header">
+          <div class="section-title">Power Flows & Market Prices (€/MWh)</div>
+        </div>
+        <div style="height: 280px; position: relative;">
+          <canvas id="chart-power"></canvas>
+        </div>
+      </div>
+
+      <!-- Voltage & Trust Chart -->
+      <div class="panel">
+        <div class="section-header">
+          <div class="section-title">Voltage Profile & Solar Agent Trust Trajectory</div>
+        </div>
+        <div style="height: 280px; position: relative;">
+          <canvas id="chart-voltage"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparative Resilience Table & Operations Copilot -->
+    <div class="two-col-grid">
+      <!-- Benchmark Table -->
+      <div class="panel">
+        <div class="section-header">
+          <div class="section-title">Comparative Resilience Matrix (Degradation Metric)</div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="bench-table" id="table-benchmarks">
+            <thead>
+              <tr>
+                <th>Controller</th>
+                <th>Normal Cost</th>
+                <th>Attack Cost</th>
+                <th>Violations</th>
+                <th>Performance Degradation</th>
+              </tr>
+            </thead>
+            <tbody id="bench-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- LLM Operations Copilot Interface -->
+      <div class="panel copilot-container">
+        <div class="section-header">
+          <div class="section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            Grid Operations & Research Copilot (RAG-Enabled)
+          </div>
+          <span style="font-size: 0.75rem; color: var(--accent-cyan);">Gemini / RAG Provider</span>
+        </div>
+
+        <div class="chat-messages" id="chat-box">
+          <div class="chat-bubble bubble-copilot">
+            <strong>Copilot Sentinel:</strong> System operational. Ask me questions regarding BESS dispatch decisions, cyber-physical anomalies, FDI attacks, or IEEE 33-bus voltage constraints.
+          </div>
+        </div>
+
+        <div class="chat-input-bar">
+          <input type="text" id="chat-input" class="chat-input" placeholder="e.g. Why was Solar Agent marked untrusted and discounted?">
+          <button id="btn-send-chat" class="btn-send">Inquire</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

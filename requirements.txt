@@ -1,0 +1,29 @@
+# Core Power System Simulation
+pandapower>=2.14.0
+networkx>=3.0
+
+# Scientific Computing & Data Processing
+numpy>=1.24.0,<2.0.0
+scipy>=1.10.0
+pandas>=2.0.0
+pyyaml>=6.0.0
+
+# Machine Learning & Statistics
+scikit-learn>=1.3.0
+
+# Reinforcement Learning & Simulation (For RL Phase)
+gymnasium>=0.29.0
+
+# API & Monitoring (For API Phase)
+fastapi>=0.110.0
+uvicorn>=0.28.0
+pydantic>=2.5.0
+
+# LLM Providers (For Copilot Phase)
+google-genai>=0.1.0
+openai>=1.12.0
+python-dotenv>=1.0.0
+
+# Testing & Quality Assurance
+pytest>=8.0.0
+pytest-asyncio>=0.23.0

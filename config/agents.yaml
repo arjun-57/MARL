@@ -1,0 +1,49 @@
+# Agent Hierarchy and Parameters
+agents:
+  solar_agent:
+    id: "solar_agent"
+    bus: 18
+    capacity_mw: 1.5
+    forecast_horizon_hours: 24
+
+  demand_agent:
+    id: "demand_agent"
+    buses: "all"
+    forecast_horizon_hours: 24
+    flexibility_ratio: 0.10  # 10% load can be shifted
+
+  battery_agent:
+    id: "battery_agent"
+    bus: 14
+    capacity_mwh: 2.0
+    arbitrage_threshold_eur: 15.0  # Min price delta to justify cycling
+
+  ev_agent:
+    id: "ev_agent"
+    bus: 24
+    num_chargers: 10
+    max_power_mw: 0.5
+
+  market_agent:
+    id: "market_agent"
+    price_high_quantile: 0.75
+    price_low_quantile: 0.25
+
+  trust_agent:
+    id: "trust_agent"
+    history_window: 24
+    alpha_ewma: 0.3
+    quarantine_threshold: 0.40
+    warning_threshold: 0.70
+
+  coordinator_agent:
+    id: "coordinator_agent"
+    conflict_resolution_strategy: "trust_weighted_optimization"
+    safety_margin: 0.05
+
+  safety_agent:
+    id: "safety_agent"
+    strict_enforcement: true
+    voltage_hard_min: 0.90
+    voltage_hard_max: 1.10
+    line_loading_hard_max: 100.0
