@@ -1,0 +1,21 @@
+{
+  "total_operating_cost_eur": 10011.13,
+  "electricity_cost_eur": 9911.56,
+  "battery_degradation_cost_eur": 99.57,
+  "grid_import_mwh": 232.43,
+  "grid_export_mwh": 0.0,
+  "solar_generated_mwh": 8.6,
+  "network_losses_mwh": 9.2,
+  "unserved_energy_mwh": 0.0,
+  "voltage_violation_hours": 0,
+  "voltage_violation_rate": 0.0,
+  "voltage_severity_integral": 0.0,
+  "min_voltage_pu": 0.9553,
+  "max_voltage_pu": 1.035,
+  "max_line_loading_pct": 0.0,
+  "cumulative_reward": -9839.06,
+  "average_step_reward": -136.65,
+  "simulated_hours": 72,
+  "controller": "centralized",
+  "attack_scenario": "none"
+}

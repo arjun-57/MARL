@@ -1,0 +1,25 @@
+services:
+  resilient-mas:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: resilient_mas_engine
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - LLM_PROVIDER=mock
+      - LOG_LEVEL=INFO
+      - SIMULATION_STEPS=168
+      - RANDOM_SEED=42
+    env_file:
+      - .env.example
+    volumes:
+      - ./results:/app/results
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s

@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=65.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "resilient-mas"
+version = "1.0.0"
+description = "Cyber-Physical Multi-Agent Energy Management System with Pandapower AC Power Flow on IEEE 33-Bus"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Arjun R", email = "arjunr3773@gmail.com" }
+]
+keywords = [
+    "multi-agent-systems",
+    "smart-grid",
+    "reinforcement-learning",
+    "cyber-physical-systems",
+    "pandapower",
+    "fastapi",
+    "energy-management",
+    "ieee-33-bus"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering",
+    "Topic :: System :: Distributed Computing"
+]
+dependencies = [
+    "pandapower>=2.14.0",
+    "networkx>=3.0",
+    "numpy>=1.24.0,<2.0.0",
+    "scipy>=1.10.0",
+    "pandas>=2.0.0",
+    "pyyaml>=6.0.0",
+    "scikit-learn>=1.3.0",
+    "gymnasium>=0.29.0",
+    "fastapi>=0.110.0",
+    "uvicorn>=0.28.0",
+    "pydantic>=2.5.0",
+    "google-genai>=0.1.0",
+    "openai>=1.12.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "httpx>=0.27.0",
+    "ruff>=0.3.0",
+    "black>=24.0.0"
+]
+
+[project.scripts]
+resilient-mas = "api.main:app"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agents*", "api*", "assets*", "attacks*", "communication*", "config*", "coordination*", "data*", "environment*", "evaluation*", "experiments*", "grid*", "llm*", "rag*", "security*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]

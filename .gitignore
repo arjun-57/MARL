@@ -30,16 +30,25 @@ ENV/
 .env
 *.local
 
-# IDE
+# IDE & OS Metadata
 .idea/
 .vscode/
 *.swp
 *.swo
+.DS_Store
+Thumbs.db
 
-# Project Data & Artifacts
+# Large Raw External Datasets (>100MB; see data/build_dataset.py)
 data/raw/
+
+# Ephemeral Runtime Logs & Artifacts
 logs/*.log
+!logs/.gitkeep
+
+# Temporary Plot Outputs
 results/*.png
-results/*.csv
-results/*.json
+
+# Test & Coverage Caches
 .pytest_cache/
+.coverage
+htmlcov/

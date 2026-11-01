@@ -1,0 +1,5 @@
+Controller,Normal_Cost_EUR,Attack_Cost_EUR,Normal_Violations_h,Attack_Violations_h,Normal_Reward,Attack_Reward,Performance_Degradation
+centralized,10011.13,10992.57,0,24,-9839.06,-11308.42,0.1493
+independent,9743.73,9899.61,0,0,-9571.65,-9727.54,0.0163
+coordinated,9813.83,9973.44,0,0,-9641.76,-9801.37,0.0166
+resilient,9813.83,9813.83,0,0,-9641.76,-9641.76,0.0
