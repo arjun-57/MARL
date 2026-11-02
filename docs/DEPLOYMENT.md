@@ -102,3 +102,4 @@ Resilient-MAS is designed to function in strictly air-gapped substation environm
 - Set `LLM_PROVIDER=mock` in `.env` to enable the deterministic offline Copilot provider.
 - All RAG knowledge bases (`rag/documents/*.md`) and TF-IDF vector models execute locally in-memory.
 - Pandapower AC power flow equations execute locally with pure NumPy and SciPy solvers.
+

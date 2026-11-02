@@ -158,3 +158,4 @@ Step 7: Observability & RAG Context Ingestion
         Telemetry is pushed to dashboard websockets/REST endpoints.
         Incident logs are indexed for the Operations Copilot.
 ```
+

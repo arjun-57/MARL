@@ -105,3 +105,4 @@ Under a sustained False Data Injection (FDI) campaign against the Solar PV agent
 
 Key Finding:
 The Centralized baseline experiences 24 hours of operational violations and a 14.93% cost surge because it blind-trusts corrupted telemetry. Resilient-MAS detects the physical rating violation at Step 1, isolates the agent with an updated trust score ($T < 0.40$), and maintains normal operations with 0.00% performance degradation.
+

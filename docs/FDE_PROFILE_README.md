@@ -78,3 +78,4 @@ Experienced in designing, deploying, and operating high-reliability software in 
 3. **Deterministic Fail-Safes:** When trust deteriorates, fallback directly to local autonomous physical guardrails.
 4. **Deployable by Default:** Every project must be reproducible with a single command via containerized manifests (`docker compose up`).
 5. **Auditable Telemetry:** Maintain strict separation between high-frequency control loops and contextual operator copilots.
+
